@@ -2,12 +2,8 @@ package com.app.nuts;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
-import com.app.nuts.utils.FakeCrashLibrary;
 import com.squareup.leakcanary.LeakCanary;
-
-import timber.log.Timber;
 
 /**
  * Created by 王立强 on 2016/10/9.
