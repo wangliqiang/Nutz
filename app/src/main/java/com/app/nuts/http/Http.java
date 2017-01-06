@@ -26,6 +26,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class Http {
+
     public static final String BASE_URL = "https://api.douban.com/v2/movie/";
 
     private static OkHttpClient client;
@@ -51,7 +52,7 @@ public class Http {
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
                 //设置 请求的缓存的大小跟位置
-                File cacheFile = new File(App.getmContext().getCacheDir(), "cache");
+                File cacheFile = new File(App.getContext().getCacheDir(), "cache");
                 Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50Mb 缓存的大小
 
                 //获取OkHttp实例
@@ -83,19 +84,16 @@ public class Http {
      * 设置公共参数
      */
     private static Interceptor addQueryParameterInterceptor() {
-        Interceptor addQueryParameterInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request originalRequest = chain.request();
-                Request request;
-                HttpUrl modifiedUrl = originalRequest.url().newBuilder()
-                        // Provide your custom parameter here
-                        .addQueryParameter("phoneSystem", "")
-                        .addQueryParameter("phoneModel", "")
-                        .build();
-                request = originalRequest.newBuilder().url(modifiedUrl).build();
-                return chain.proceed(request);
-            }
+        Interceptor addQueryParameterInterceptor = chain -> {
+            Request originalRequest = chain.request();
+            Request request;
+            HttpUrl modifiedUrl = originalRequest.url().newBuilder()
+                    // Provide your custom parameter here
+                    .addQueryParameter("phoneSystem", "")
+                    .addQueryParameter("phoneModel", "")
+                    .build();
+            request = originalRequest.newBuilder().url(modifiedUrl).build();
+            return chain.proceed(request);
         };
         return addQueryParameterInterceptor;
     }
@@ -104,17 +102,14 @@ public class Http {
      * 设置头
      */
     private static Interceptor addHeaderInterceptor() {
-        Interceptor headerInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request originalRequest = chain.request();
-                Request.Builder requestBuilder = originalRequest.newBuilder()
-                        // Provide your custom header here
-                        .header("token", (String) SpUtils.get("token", ""))
-                        .method(originalRequest.method(), originalRequest.body());
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
-            }
+        Interceptor headerInterceptor = chain -> {
+            Request originalRequest = chain.request();
+            Request.Builder requestBuilder = originalRequest.newBuilder()
+                    // Provide your custom header here
+                    .header("token", (String) SpUtils.get("token", ""))
+                    .method(originalRequest.method(), originalRequest.body());
+            Request request = requestBuilder.build();
+            return chain.proceed(request);
         };
         return headerInterceptor;
     }
@@ -123,34 +118,31 @@ public class Http {
      * 设置缓存
      */
     private static Interceptor addCacheInterceptor() {
-        Interceptor cacheInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-                if (!NetworkUtil.isNetworkAvailable(App.getmContext())) {
-                    request = request.newBuilder()
-                            .cacheControl(CacheControl.FORCE_CACHE)
-                            .build();
-                }
-                Response response = chain.proceed(request);
-                if (NetworkUtil.isNetworkAvailable(App.getmContext())) {
-                    int maxAge = 0;
-                    // 有网络时 设置缓存超时时间0个小时 ,意思就是不读取缓存数据,只对get有用,post没有缓冲
-                    response.newBuilder()
-                            .header("Cache-Control", "public, max-age=" + maxAge)
-                            .removeHeader("Retrofit")// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
-                            .build();
-                } else {
-                    // 无网络时，设置超时为4周  只对get有用,post没有缓冲
-                    int maxStale = 60 * 60 * 24 * 28;
-                    response.newBuilder()
-                            .header("Cache-Control", "public, only-if-cached, max-stale=" +
-                                    maxStale)
-                            .removeHeader("nyn")
-                            .build();
-                }
-                return response;
+        Interceptor cacheInterceptor = chain -> {
+            Request request = chain.request();
+            if (!NetworkUtil.isNetworkAvailable(App.getContext())) {
+                request = request.newBuilder()
+                        .cacheControl(CacheControl.FORCE_CACHE)
+                        .build();
             }
+            Response response = chain.proceed(request);
+            if (NetworkUtil.isNetworkAvailable(App.getContext())) {
+                int maxAge = 0;
+                // 有网络时 设置缓存超时时间0个小时 ,意思就是不读取缓存数据,只对get有用,post没有缓冲
+                response.newBuilder()
+                        .header("Cache-Control", "public, max-age=" + maxAge)
+                        .removeHeader("Retrofit")// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
+                        .build();
+            } else {
+                // 无网络时，设置超时为4周  只对get有用,post没有缓冲
+                int maxStale = 60 * 60 * 24 * 28;
+                response.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" +
+                                maxStale)
+                        .removeHeader("nyn")
+                        .build();
+            }
+            return response;
         };
         return cacheInterceptor;
     }

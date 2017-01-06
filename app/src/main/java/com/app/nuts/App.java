@@ -12,6 +12,14 @@ public class App extends Application {
 
     private static Context mContext;
 
+    /**
+     * 全局Context
+     * @return
+     */
+    public static Context getContext() {
+        return mContext;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,12 +33,4 @@ public class App extends Application {
         LeakCanary.install(this);
     }
 
-    /**
-     * 设置全局的Context
-     *
-     * @return
-     */
-    public static Context getmContext() {
-        return mContext;
-    }
 }
