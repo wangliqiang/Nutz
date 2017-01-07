@@ -139,7 +139,7 @@ public class Http {
                 response.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=" +
                                 maxStale)
-                        .removeHeader("nyn")
+                        .removeHeader("token")
                         .build();
             }
             return response;
