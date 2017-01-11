@@ -20,6 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import timber.log.Timber;
 
 /**
  * Created by 王立强 on 2017/1/6.
@@ -47,8 +48,8 @@ public class Http {
         if (retrofit == null) {
             synchronized (Http.class) {
                 //添加一个log拦截器,打印所有的log
-                HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-                //可以设置请求过滤的水平,body,basic,headers
+                HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(message -> Timber.tag("OkHttp").e(message));
+//                //可以设置请求过滤的水平,body,basic,headers
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
                 //设置 请求的缓存的大小跟位置
