@@ -59,8 +59,10 @@ public class Http {
                 //获取OkHttp实例
                 client = new OkHttpClient
                         .Builder()
-                        .addInterceptor(addQueryParameterInterceptor())
-                        .addInterceptor(addHeaderInterceptor())
+                        //设置公共参数
+//                        .addInterceptor(addQueryParameterInterceptor())
+                        //设置头
+//                        .addInterceptor(addHeaderInterceptor())
                         .addInterceptor(httpLoggingInterceptor)
                         .cache(cache)
                         .connectTimeout(601, TimeUnit.SECONDS)
@@ -90,8 +92,8 @@ public class Http {
             Request request;
             HttpUrl modifiedUrl = originalRequest.url().newBuilder()
                     // Provide your custom parameter here
-                    .addQueryParameter("phoneSystem", "")
-                    .addQueryParameter("phoneModel", "")
+                    .addQueryParameter("", "")
+                    .addQueryParameter("", "")
                     .build();
             request = originalRequest.newBuilder().url(modifiedUrl).build();
             return chain.proceed(request);
@@ -107,7 +109,7 @@ public class Http {
             Request originalRequest = chain.request();
             Request.Builder requestBuilder = originalRequest.newBuilder()
                     // Provide your custom header here
-                    .header("token", (String) SpUtils.get("token", ""))
+                    .header("token","")
                     .method(originalRequest.method(), originalRequest.body());
             Request request = requestBuilder.build();
             return chain.proceed(request);

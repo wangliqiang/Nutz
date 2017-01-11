@@ -41,6 +41,7 @@ public class MoviePresenter extends RxPresenter implements MovieContract.Present
                     mMovieInfo = JSON.parseObject(s, MovieInfo.class);
                     mView.showMovieInfo(mMovieInfo);
                 }, throwable -> {
+                    mView.dismissLoading();
                     mView.showError();
                     throwable.printStackTrace();
                 });
