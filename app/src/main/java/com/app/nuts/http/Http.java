@@ -2,10 +2,8 @@ package com.app.nuts.http;
 
 import com.app.nuts.App;
 import com.app.nuts.utils.NetworkUtil;
-import com.app.nuts.utils.SpUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
