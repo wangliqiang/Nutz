@@ -12,6 +12,7 @@ public class CommonTransformer<T> implements Observable.Transformer<T, T> {
     @Override
     public Observable<T> call(Observable<T> tansFormerObservable) {
         return tansFormerObservable.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

@@ -16,7 +16,6 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import timber.log.Timber;
 
@@ -74,7 +73,7 @@ public class Http {
                         .client(client)
                         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                         .addConverterFactory(ScalarsConverterFactory.create())//解析String
-                        .addConverterFactory(GsonConverterFactory.create())//解析JSON
+//                        .addConverterFactory(GsonConverterFactory.create())//解析JSON
                         .build();
             }
         }
@@ -98,6 +97,8 @@ public class Http {
         };
         return addQueryParameterInterceptor;
     }
+
+
 
     /**
      * 设置头
