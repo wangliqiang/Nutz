@@ -62,9 +62,9 @@ public class Http {
 //                        .addInterceptor(addHeaderInterceptor())
                         .addInterceptor(httpLoggingInterceptor)
                         .cache(cache)
-                        .connectTimeout(601, TimeUnit.SECONDS)
-                        .readTimeout(601, TimeUnit.SECONDS)
-                        .writeTimeout(601, TimeUnit.SECONDS)
+                        .connectTimeout(1000, TimeUnit.SECONDS)
+                        .readTimeout(1000, TimeUnit.SECONDS)
+                        .writeTimeout(1000, TimeUnit.SECONDS)
                         .build();
                 //获取Retrofit实例
                 retrofit = new Retrofit
