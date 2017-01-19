@@ -2,6 +2,7 @@ package com.app.nuts.base;
 
 import com.app.nuts.http.Http;
 import com.app.nuts.http.HttpService;
+import com.app.nuts.utils.Log;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -41,12 +42,14 @@ public class RxPresenter<T> implements BasePresenter<T> {
     //绑定View
     @Override
     public void attachView(T view) {
+        Log.e("tag","attachView......");
         this.mView = view;
     }
 
     //解绑View
     @Override
     public void detachView() {
+        Log.e("tag","detachView......");
         this.mView = null;
         unsubscribe();
     }

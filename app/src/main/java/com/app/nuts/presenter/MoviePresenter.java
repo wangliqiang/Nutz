@@ -7,6 +7,7 @@ import com.app.nuts.base.RxPresenter;
 import com.app.nuts.common.CommonTransformer;
 import com.app.nuts.model.MovieInfo;
 import com.app.nuts.presenter.contract.MovieContract;
+import com.app.nuts.utils.Log;
 
 import rx.Subscription;
 

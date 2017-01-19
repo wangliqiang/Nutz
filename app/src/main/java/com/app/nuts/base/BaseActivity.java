@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import com.app.nuts.utils.Log;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
 
@@ -14,7 +15,7 @@ import butterknife.ButterKnife;
  * Created by 王立强 on 2016/10/9.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity{
+public abstract class BaseActivity<T> extends AppCompatActivity{
 
     private T presenter;
 
