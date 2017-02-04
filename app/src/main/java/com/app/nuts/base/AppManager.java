@@ -43,9 +43,9 @@ public class AppManager {
     private Application mApplication;
 
     //管理所有activity
-    public List<BaseActivity> mActivityList;
+    public List<BaseAppActivity> mActivityList;
     //当前在前台的activity
-    private BaseActivity mCurrentActivity;
+    private BaseAppActivity mCurrentActivity;
 
     @Inject
     public AppManager(Application application) {
@@ -145,7 +145,7 @@ public class AppManager {
      *
      * @param currentActivity
      */
-    public void setCurrentActivity(BaseActivity currentActivity) {
+    public void setCurrentActivity(BaseAppActivity currentActivity) {
         this.mCurrentActivity = currentActivity;
     }
 
@@ -154,7 +154,7 @@ public class AppManager {
      *
      * @return
      */
-    public BaseActivity getCurrentActivity() {
+    public BaseAppActivity getCurrentActivity() {
         return mCurrentActivity;
     }
 
@@ -163,7 +163,7 @@ public class AppManager {
      *
      * @return
      */
-    public List<BaseActivity> getActivityList() {
+    public List<BaseAppActivity> getActivityList() {
         if (mActivityList == null) {
             mActivityList = new LinkedList<>();
         }
@@ -174,7 +174,7 @@ public class AppManager {
     /**
      * 添加Activity到集合
      */
-    public void addActivity(BaseActivity activity) {
+    public void addActivity(BaseAppActivity activity) {
         if (mActivityList == null) {
             mActivityList = new LinkedList<>();
         }
@@ -190,9 +190,9 @@ public class AppManager {
      *
      * @param activity
      */
-    public void removeActivity(BaseActivity activity) {
+    public void removeActivity(BaseAppActivity activity) {
         if (mActivityList == null) {
-            Timber.tag(TAG).w("mActivityList == null when removeActivity(BaseActivity)");
+            Timber.tag(TAG).w("mActivityList == null when removeActivity(BaseAppActivity)");
             return;
         }
         synchronized (AppManager.class) {
@@ -207,7 +207,7 @@ public class AppManager {
      *
      * @param location
      */
-    public BaseActivity removeActivity(int location) {
+    public BaseAppActivity removeActivity(int location) {
         if (mActivityList == null) {
             Timber.tag(TAG).w("mActivityList == null when removeActivity(int)");
             return null;
@@ -230,7 +230,7 @@ public class AppManager {
             Timber.tag(TAG).w("mActivityList == null when killActivity");
             return;
         }
-        for (BaseActivity activity : mActivityList) {
+        for (BaseAppActivity activity : mActivityList) {
             if (activity.getClass().equals(activityClass)) {
                 activity.finish();
             }
@@ -244,7 +244,7 @@ public class AppManager {
      * @param activity
      * @return
      */
-    public boolean activityInstanceIsLive(BaseActivity activity) {
+    public boolean activityInstanceIsLive(BaseAppActivity activity) {
         if (mActivityList == null) {
             Timber.tag(TAG).w("mActivityList == null when activityInstanceIsLive");
             return false;
@@ -264,7 +264,7 @@ public class AppManager {
             Timber.tag(TAG).w("mActivityList == null when activityClassIsLive");
             return false;
         }
-        for (BaseActivity activity : mActivityList) {
+        for (BaseAppActivity activity : mActivityList) {
             if (activity.getClass().equals(activityClass)) {
                 return true;
             }
@@ -282,7 +282,7 @@ public class AppManager {
 //            getActivityList().remove(0).finish();
 //        }
 
-        Iterator<BaseActivity> iterator = getActivityList().iterator();
+        Iterator<BaseAppActivity> iterator = getActivityList().iterator();
         while (iterator.hasNext()) {
             iterator.next().finish();
             iterator.remove();

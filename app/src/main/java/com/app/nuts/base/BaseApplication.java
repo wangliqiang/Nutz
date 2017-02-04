@@ -1,9 +1,8 @@
-package com.app.nuts;
+package com.app.nuts.base;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.app.nuts.base.AppManager;
 import com.app.nuts.base.di.component.DaggerBaseComponent;
 import com.app.nuts.base.di.module.AppModule;
 import com.app.nuts.base.di.module.ClientModule;

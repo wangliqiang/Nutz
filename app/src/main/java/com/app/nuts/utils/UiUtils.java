@@ -19,7 +19,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.nuts.BaseApplication;
+import com.app.nuts.base.BaseApplication;
 
 import org.simple.eventbus.EventBus;
 

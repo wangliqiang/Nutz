@@ -9,7 +9,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by 王立强 on 2017/2/4.
  */
 
-public class BasePresenter<M extends Model, V extends BaseView> implements Presenter {
+public class BasePresenter<M extends AppModel, V extends BaseView> implements AppPresenter {
     protected final String TAG = this.getClass().getSimpleName();
     protected CompositeSubscription mCompositeSubscription;
 

@@ -1,6 +1,6 @@
 package com.app.nuts.base.di.component;
 
-import com.app.nuts.BaseApplication;
+import com.app.nuts.base.BaseApplication;
 import com.app.nuts.base.di.module.AppModule;
 
 import javax.inject.Singleton;
