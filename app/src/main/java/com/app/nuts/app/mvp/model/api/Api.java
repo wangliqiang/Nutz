@@ -4,6 +4,5 @@ package com.app.nuts.app.mvp.model.api;
  * Created by 王立强 on 2017/2/4.
  */
 public interface Api {
-    String APP_DOMAIN = "https://api.github.com";
-    String RequestSuccess = "0";
+    String APP_DOMAIN = "tps://api.douban.com/v2/movie/";
 }

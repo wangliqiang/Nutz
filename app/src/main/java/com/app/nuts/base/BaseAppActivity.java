@@ -87,10 +87,16 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
 
         if (useEventBus())//如果要使用eventbus请将此方法返回true
             EventBus.getDefault().register(this);//注册到事件主线
+        setContentView(initView());
         //绑定到butterknife
         mUnbinder = ButterKnife.bind(this);
         ComponentInject();//依赖注入
+        initData();
     }
+
+    protected abstract View initView();
+
+    protected abstract void initData();
 
     /**
      * 依赖注入的入口
@@ -126,6 +132,7 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
 
     /**
      * 是否使用eventBus,默认为使用(true)，
+     *
      * @return
      */
     protected boolean useEventBus() {

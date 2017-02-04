@@ -1,7 +1,7 @@
 package com.app.nuts.app.mvp.model;
 
 import com.app.nuts.app.mvp.contract.MovieContract;
-import com.app.nuts.app.mvp.entity.User;
+import com.app.nuts.app.mvp.entity.MovieInfo;
 import com.app.nuts.app.mvp.model.api.cache.CacheManager;
 import com.app.nuts.app.mvp.model.api.service.ServiceManager;
 import com.app.nuts.base.di.scope.ActivityScope;
@@ -31,24 +31,17 @@ public class MovieModel extends BaseModel<ServiceManager, CacheManager> implemen
 
 
     @Override
-    public Observable<List<User>> getUsers(int lastIdQueried, boolean update) {
-        Observable<List<User>> users = mServiceManager.getUserService()
-                .getUsers(lastIdQueried, USERS_PER_PAGE);
+    public Observable<List<MovieInfo>> getMovieInfo(int start, int count) {
+        Observable<List<MovieInfo>> movieInfo = mServiceManager.getMovieService()
+                .getMovieInfo(start, USERS_PER_PAGE);
         //使用rxcache缓存,上拉刷新则不读取缓存,加载更多读取缓存
         return mCacheManager.getCommonCache()
-                .getUsers(users
-                        , new DynamicKey(lastIdQueried)
-                        , new EvictDynamicKey(update))
-                .flatMap(new Func1<Reply<List<User>>, Observable<List<User>>>() {
+                .getMovieInfo(movieInfo, start, count)
+                .flatMap(new Func1<Reply<List<MovieInfo>>, Observable<List<MovieInfo>>>() {
                     @Override
-                    public Observable<List<User>> call(Reply<List<User>> listReply) {
+                    public Observable<List<MovieInfo>> call(Reply<List<MovieInfo>> listReply) {
                         return Observable.just(listReply.getData());
                     }
                 });
-    }
-
-    @Override
-    public void onDestory() {
-
     }
 }

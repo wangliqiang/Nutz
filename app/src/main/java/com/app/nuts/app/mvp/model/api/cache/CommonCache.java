@@ -1,6 +1,6 @@
 package com.app.nuts.app.mvp.model.api.cache;
 
-import com.app.nuts.app.mvp.entity.User;
+import com.app.nuts.app.mvp.entity.MovieInfo;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +16,6 @@ import rx.Observable;
  */
 public interface CommonCache {
     @LifeCache(duration = 2, timeUnit = TimeUnit.MINUTES)
-    Observable<Reply<List<User>>> getUsers(Observable<List<User>> oUsers, DynamicKey idLastUserQueried, EvictProvider evictProvider);
+    Observable<Reply<List<MovieInfo>>> getMovieInfo(Observable<List<MovieInfo>> movieInfo, int start, int count);
 
 }
