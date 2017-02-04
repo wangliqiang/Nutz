@@ -7,6 +7,7 @@ import android.view.View;
 import com.app.nuts.R;
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.common.BaseActivity;
+import com.app.nuts.app.di.component.DaggerMovieComponent;
 import com.app.nuts.app.di.module.MovieModule;
 import com.app.nuts.app.mvp.contract.MovieContract;
 import com.app.nuts.app.mvp.entity.MovieInfo;

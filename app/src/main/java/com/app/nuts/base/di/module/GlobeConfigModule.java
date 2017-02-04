@@ -95,7 +95,7 @@ public class GlobeConfigModule {
 
 
     public static final class Buidler {
-        private HttpUrl apiUrl = HttpUrl.parse("https://api.github.com/");
+        private HttpUrl apiUrl = HttpUrl.parse("https://api.douban.com/v2/movie/");
         private GlobeHttpHandler handler;
         private List<Interceptor> interceptors = new ArrayList<>();
         private ResponseErroListener responseErroListener;

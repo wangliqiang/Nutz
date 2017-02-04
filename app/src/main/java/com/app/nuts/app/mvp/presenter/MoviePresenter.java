@@ -15,6 +15,8 @@ import com.app.nuts.utils.RxUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -28,6 +30,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model,MovieContr
     private Application mApplication;
     private List<MovieInfo> movieInfo = new ArrayList<>();
 
+    @Inject
     public MoviePresenter(MovieContract.Model model,MovieContract.View view,RxErrorHandler handler,AppManager appManager,Application application){
         super(model,view);
         this.mApplication = application;
