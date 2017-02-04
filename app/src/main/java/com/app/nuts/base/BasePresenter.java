@@ -5,9 +5,4 @@ package com.app.nuts.base;
  */
 
 public interface BasePresenter<T> {
-
-   void attachView(T view);
-
-   void detachView();
-
 }

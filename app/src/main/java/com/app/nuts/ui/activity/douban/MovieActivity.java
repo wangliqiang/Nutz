@@ -1,5 +1,6 @@
 package com.app.nuts.ui.activity.douban;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import com.app.nuts.model.MovieInfo;
 import com.app.nuts.presenter.MoviePresenter;
 import com.app.nuts.presenter.contract.MovieContract;
 import com.app.nuts.ui.adapter.MovieInfoAdapter;
+import com.lzy.okgo.OkGo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,11 +133,13 @@ public class MovieActivity extends BaseActivity implements MovieContract.View{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        OkGo.getInstance().cancelTag(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         swiperefreshlayout.setRefreshing(false);
+        OkGo.getInstance().cancelTag(this);
     }
 }
