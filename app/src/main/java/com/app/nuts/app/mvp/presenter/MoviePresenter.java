@@ -9,6 +9,7 @@ import com.app.nuts.base.AppManager;
 import com.app.nuts.base.mvp.BasePresenter;
 import com.app.nuts.base.rxerrorhandler.core.RxErrorHandler;
 import com.app.nuts.base.rxerrorhandler.handler.ErrorHandleSubscriber;
+import com.app.nuts.base.rxerrorhandler.handler.RetryWithDelay;
 import com.app.nuts.utils.RxUtils;
 
 import javax.inject.Inject;
@@ -45,6 +46,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                 .doAfterTerminate(() -> {
 
                 })
+                .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtils.bindToLifecycle(mView))
                 .subscribe(new ErrorHandleSubscriber<String>(mErrorHandler) {
                     @Override
