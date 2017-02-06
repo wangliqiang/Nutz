@@ -12,9 +12,6 @@ import com.trello.rxlifecycle.components.RxFragment;
 import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 //import butterknife.Unbinder;
 
 /**

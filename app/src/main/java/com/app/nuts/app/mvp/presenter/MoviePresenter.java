@@ -1,7 +1,6 @@
 package com.app.nuts.app.mvp.presenter;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.app.nuts.app.mvp.contract.MovieContract;
@@ -11,9 +10,6 @@ import com.app.nuts.base.mvp.BasePresenter;
 import com.app.nuts.base.rxerrorhandler.core.RxErrorHandler;
 import com.app.nuts.base.rxerrorhandler.handler.ErrorHandleSubscriber;
 import com.app.nuts.utils.RxUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 

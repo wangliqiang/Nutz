@@ -1,16 +1,13 @@
 package com.app.nuts.app.common;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.app.nuts.BuildConfig;
-import com.app.nuts.app.di.module.CacheModule;
 import com.app.nuts.app.di.module.ServiceModule;
 import com.app.nuts.app.mvp.model.api.Api;
 import com.app.nuts.base.BaseApplication;
 import com.app.nuts.base.di.module.GlobeConfigModule;
-import com.app.nuts.base.rxerrorhandler.handler.listener.ResponseErroListener;
 import com.app.nuts.http.GlobeHttpHandler;
 import com.app.nuts.utils.UiUtils;
 
@@ -18,8 +15,6 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import timber.log.Timber;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * Created by 王立强 on 2017/2/4.

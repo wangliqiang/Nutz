@@ -9,16 +9,10 @@ import android.view.View;
 
 import com.app.nuts.base.mvp.AppPresenter;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.zhy.autolayout.AutoFrameLayout;
-import com.zhy.autolayout.AutoLinearLayout;
-import com.zhy.autolayout.AutoRelativeLayout;
 
 import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by 王立强 on 2017/2/4.
@@ -30,9 +24,6 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
     @Inject
     protected P mPresenter;
 
-    private static final String LAYOUT_LINEARLAYOUT = "LinearLayout";
-    private static final String LAYOUT_FRAMELAYOUT = "FrameLayout";
-    private static final String LAYOUT_RELATIVELAYOUT = "RelativeLayout";
     public static final String IS_NOT_ADD_ACTIVITY_LIST = "is_add_activity_list";//是否加入到activity的list，管理
 
     @Override

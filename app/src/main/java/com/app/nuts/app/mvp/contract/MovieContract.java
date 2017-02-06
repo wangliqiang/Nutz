@@ -1,10 +1,7 @@
 package com.app.nuts.app.mvp.contract;
 
-import com.app.nuts.app.mvp.entity.MovieInfo;
 import com.app.nuts.base.mvp.AppModel;
 import com.app.nuts.base.mvp.BaseView;
-
-import java.util.List;
 
 import rx.Observable;
 

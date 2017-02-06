@@ -2,7 +2,6 @@ package com.app.nuts.app.mvp.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import com.app.nuts.R;
@@ -11,7 +10,6 @@ import com.app.nuts.app.common.BaseActivity;
 import com.app.nuts.app.di.component.DaggerMovieComponent;
 import com.app.nuts.app.di.module.MovieModule;
 import com.app.nuts.app.mvp.contract.MovieContract;
-import com.app.nuts.app.mvp.entity.MovieInfo;
 import com.app.nuts.app.mvp.presenter.MoviePresenter;
 
 import org.json.JSONArray;
