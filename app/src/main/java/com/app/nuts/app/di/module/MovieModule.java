@@ -26,13 +26,13 @@ public class MovieModule {
 
     @ActivityScope
     @Provides
-    MovieContract.View provideUserView(){
+    MovieContract.View provideMovieView(){
         return this.view;
     }
 
     @ActivityScope
     @Provides
-    MovieContract.Model provideUserModel(MovieModel model){
+    MovieContract.Model provideMovieModel(MovieModel model){
         return model;
     }
 }

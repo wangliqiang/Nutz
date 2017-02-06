@@ -41,8 +41,8 @@ public class App extends BaseApplication {
                 .clientModule(getClientModule())//baseApplication提供
                 .imageModule(getImageModule())//baseApplication提供
                 .globeConfigModule(getGlobeConfigModule())//全局配置
-                .serviceModule(new ServiceModule())//需自行创建
-                .cacheModule(new CacheModule())//需自行创建
+                .serviceModule(new ServiceModule())//api
+//                .cacheModule(new CacheModule())//缓存
                 .build();
 
         if (BuildConfig.DEBUG) {//Timber日志打印
@@ -87,14 +87,9 @@ public class App extends BaseApplication {
                         try {
                             if (!TextUtils.isEmpty(httpResult)) {
                                 Log.e("httpResult",httpResult);
-                                JSONArray array = new JSONArray(httpResult);
-                                JSONObject object = (JSONObject) array.get(0);
-                                String login = object.getString("login");
-                                String avatar_url = object.getString("avatar_url");
-                                Timber.tag(TAG).w("result ------>" + login + "    ||   avatar_url------>" + avatar_url);
+                                Timber.tag(TAG).w("result ------>" + httpResult);
                             }
-
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                             return response;
                         }

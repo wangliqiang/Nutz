@@ -1,8 +1,6 @@
 package com.app.nuts.app.di.module;
 
-
 import com.app.nuts.app.mvp.model.api.service.CommonService;
-import com.app.nuts.app.mvp.model.api.service.MovieService;
 
 import javax.inject.Singleton;
 
@@ -20,12 +18,6 @@ public class ServiceModule {
     @Provides
     CommonService provideCommonService(Retrofit retrofit) {
         return retrofit.create(CommonService.class);
-    }
-
-    @Singleton
-    @Provides
-    MovieService provideUserService(Retrofit retrofit) {
-        return retrofit.create(MovieService.class);
     }
 
 }

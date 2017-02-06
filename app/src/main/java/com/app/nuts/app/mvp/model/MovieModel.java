@@ -32,7 +32,7 @@ public class MovieModel extends BaseModel<ServiceManager, CacheManager> implemen
 
     @Override
     public Observable<List<MovieInfo>> getMovieInfo(int start, int count) {
-        Observable<List<MovieInfo>> movieInfo = mServiceManager.getMovieService()
+        Observable<List<MovieInfo>> movieInfo = mServiceManager.getCommonService()
                 .getMovieInfo(start, USERS_PER_PAGE);
         //使用rxcache缓存,上拉刷新则不读取缓存,加载更多读取缓存
         return mCacheManager.getCommonCache()
