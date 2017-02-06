@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+//import butterknife.Unbinder;
 
 /**
  * Created by 王立强 on 2017/2/4.
@@ -26,15 +27,11 @@ public abstract class BaseAppFragment<P extends AppPresenter> extends RxFragment
     protected final String TAG = this.getClass().getSimpleName();
     @Inject
     protected P mPresenter;
-    private Unbinder mUnbinder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = initView();
-        //绑定到butterknife
-        mUnbinder = ButterKnife.bind(this, mRootView);
-        return mRootView;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -44,7 +41,6 @@ public abstract class BaseAppFragment<P extends AppPresenter> extends RxFragment
         if (useEventBus())//如果要使用eventbus请将此方法返回true
             EventBus.getDefault().register(this);//注册到事件主线
         ComponentInject();
-        initData();
     }
 
     /**
@@ -56,7 +52,6 @@ public abstract class BaseAppFragment<P extends AppPresenter> extends RxFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mUnbinder != Unbinder.EMPTY) mUnbinder.unbind();
     }
 
     @Override
@@ -68,7 +63,6 @@ public abstract class BaseAppFragment<P extends AppPresenter> extends RxFragment
         this.mPresenter = null;
         this.mActivity = null;
         this.mRootView = null;
-        this.mUnbinder = null;
     }
 
     /**
@@ -79,11 +73,6 @@ public abstract class BaseAppFragment<P extends AppPresenter> extends RxFragment
     protected boolean useEventBus() {
         return true;
     }
-
-
-    protected abstract View initView();
-
-    protected abstract void initData();
 
 
     /**

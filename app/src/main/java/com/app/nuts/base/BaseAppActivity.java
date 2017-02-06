@@ -27,7 +27,6 @@ import butterknife.Unbinder;
 public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompatActivity {
     protected final String TAG = this.getClass().getSimpleName();
     protected BaseApplication mApplication;
-    private Unbinder mUnbinder;
     @Inject
     protected P mPresenter;
 
@@ -38,24 +37,8 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
-        View view = null;
-        if (name.equals(LAYOUT_FRAMELAYOUT)) {
-            view = new AutoFrameLayout(context, attrs);
-        }
-
-        if (name.equals(LAYOUT_LINEARLAYOUT)) {
-            view = new AutoLinearLayout(context, attrs);
-        }
-
-        if (name.equals(LAYOUT_RELATIVELAYOUT)) {
-            view = new AutoRelativeLayout(context, attrs);
-        }
-
-        if (view != null) return view;
-
         return super.onCreateView(name, context, attrs);
     }
-
 
     @Override
     protected void onResume() {
@@ -87,16 +70,8 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
 
         if (useEventBus())//如果要使用eventbus请将此方法返回true
             EventBus.getDefault().register(this);//注册到事件主线
-        setContentView(initView());
-        //绑定到butterknife
-        mUnbinder = ButterKnife.bind(this);
         ComponentInject();//依赖注入
-        initData();
     }
-
-    protected abstract View initView();
-
-    protected abstract void initData();
 
     /**
      * 依赖注入的入口
@@ -122,11 +97,9 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
         super.onDestroy();
         mApplication.getAppManager().removeActivity(this);
         if (mPresenter != null) mPresenter.onDestroy();//释放资源
-        if (mUnbinder != Unbinder.EMPTY) mUnbinder.unbind();
         if (useEventBus())//如果要使用eventbus请将此方法返回true
             EventBus.getDefault().unregister(this);
         this.mPresenter = null;
-        this.mUnbinder = null;
         this.mApplication = null;
     }
 

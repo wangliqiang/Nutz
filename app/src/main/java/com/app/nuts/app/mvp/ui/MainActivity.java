@@ -1,44 +1,38 @@
 package com.app.nuts.app.mvp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.os.PersistableBundle;
+import android.widget.Button;
 
 import com.app.nuts.R;
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.common.BaseActivity;
-import com.app.nuts.app.di.component.DaggerMovieComponent;
-import com.app.nuts.app.di.module.MovieModule;
-import com.app.nuts.app.mvp.contract.MovieContract;
-import com.app.nuts.app.mvp.entity.MovieInfo;
-import com.app.nuts.app.mvp.presenter.MoviePresenter;
 
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity<MoviePresenter> implements MovieContract.View {
+public class MainActivity extends BaseActivity {
 
-    @Override
-    protected View initView() {
-        return LayoutInflater.from(this).inflate(R.layout.activity_main, null, false);
-    }
+    @BindView(R.id.movie_btn)
+    Button movieBtn;
 
     @Override
-    protected void initData() {
-        mPresenter.getMovieInfo();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
     }
+
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
-        DaggerMovieComponent
-                .builder()
-                .appComponent(appComponent)
-                .movieModule(new MovieModule(this))
-                .build()
-                .inject(this);
+
     }
 
-    @Override
-    public void showMovieInfo(List<MovieInfo> movieInfos) {
-
+    @OnClick(R.id.movie_btn)
+    public void onClick() {
+        startActivity(new Intent(this,MovieActivity.class));
     }
 }

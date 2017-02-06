@@ -2,6 +2,7 @@ package com.app.nuts.app.common;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.app.nuts.BuildConfig;
 import com.app.nuts.app.di.module.CacheModule;
@@ -85,6 +86,7 @@ public class App extends BaseApplication {
                         //重新请求token,并重新执行请求
                         try {
                             if (!TextUtils.isEmpty(httpResult)) {
+                                Log.e("httpResult",httpResult);
                                 JSONArray array = new JSONArray(httpResult);
                                 JSONObject object = (JSONObject) array.get(0);
                                 String login = object.getString("login");
