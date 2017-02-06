@@ -83,7 +83,7 @@ public class App extends BaseApplication {
                         //重新请求token,并重新执行请求
                         try {
                             if (!TextUtils.isEmpty(httpResult)) {
-                                Log.e(TAG, "result ------>" + httpResult);
+                                Log.e(TAG, "httpResult ------>" + httpResult);
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

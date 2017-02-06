@@ -25,6 +25,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by 王立强 on 2017/2/4.
@@ -55,7 +56,8 @@ public class ClientModule {
                 .baseUrl(httpUrl)//域名
                 .client(client)//设置okhttp
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//使用rxjava
-                .addConverterFactory(GsonConverterFactory.create())//使用Gson
+//                .addConverterFactory(GsonConverterFactory.create())//使用Gson
+                .addConverterFactory(ScalarsConverterFactory.create())//使用String
                 .build();
     }
 

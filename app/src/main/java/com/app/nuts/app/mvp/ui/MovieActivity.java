@@ -33,7 +33,7 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
     }
 
     @Override
-    public void showMovieInfo(List<MovieInfo> movieInfos) {
+    public void showMovieInfo(MovieInfo movieInfos) {
 
     }
 }

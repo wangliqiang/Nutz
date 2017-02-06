@@ -10,9 +10,7 @@ import com.app.nuts.base.AppManager;
 import com.app.nuts.base.mvp.BasePresenter;
 import com.app.nuts.base.rxerrorhandler.core.RxErrorHandler;
 import com.app.nuts.base.rxerrorhandler.handler.ErrorHandleSubscriber;
-import com.app.nuts.base.rxerrorhandler.handler.RetryWithDelay;
 import com.app.nuts.utils.RxUtils;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
     private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
     private Application mApplication;
-    private List<MovieInfo> movieInfo = new ArrayList<>();
+    private MovieInfo movieInfo;
 
     @Inject
     public MoviePresenter(MovieContract.Model model, MovieContract.View view, RxErrorHandler handler, AppManager appManager, Application application) {
@@ -55,11 +53,10 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                 .subscribe(new ErrorHandleSubscriber<String>(mErrorHandler) {
                     @Override
                     public void onNext(String movieInfosStr) {
-                        movieInfo = JSON.parseArray(movieInfosStr,MovieInfo.class);
+                        movieInfo = JSON.parseObject(movieInfosStr, MovieInfo.class);
                         mView.showMovieInfo(movieInfo);
                     }
                 });
-
     }
 
     @Override
