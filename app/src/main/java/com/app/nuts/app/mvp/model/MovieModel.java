@@ -26,8 +26,8 @@ public class MovieModel extends BaseModel<ServiceManager, CacheManager> implemen
 
 
     @Override
-    public Observable<List<MovieInfo>> getMovieInfo(int start, int count) {
-        Observable<List<MovieInfo>> movieInfo = mServiceManager.getCommonService()
+    public Observable<String> getMovieInfo(int start, int count) {
+        Observable<String> movieInfo = mServiceManager.getCommonService()
                 .getMovieInfo(start, count);
         return movieInfo;
     }

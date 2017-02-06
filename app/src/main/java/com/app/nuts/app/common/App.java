@@ -67,6 +67,7 @@ public class App extends BaseApplication {
 
     /**
      * app的全局配置信息封装进module(使用Dagger注入到需要配置信息的地方)
+     *
      * @return
      */
     @Override
@@ -82,7 +83,7 @@ public class App extends BaseApplication {
                         //重新请求token,并重新执行请求
                         try {
                             if (!TextUtils.isEmpty(httpResult)) {
-                                Timber.tag(TAG).w("result ------>" + httpResult);
+                                Log.e(TAG, "result ------>" + httpResult);
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

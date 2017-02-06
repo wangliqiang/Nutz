@@ -19,7 +19,7 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        mPresenter.getMovieInfo();
+        mPresenter.getMovieInfo(1, 20);
     }
 
     @Override
