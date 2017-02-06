@@ -9,9 +9,6 @@ import rx.Observable;
  * Created by 王立强 on 2017/2/4.
  */
 public interface CommonService {
-
-    String V2 = "/v2/movie";
-
-    @GET(V2+"/top250")
+    @GET("top250")
     Observable<String> getMovieInfo(@Query("start") int start, @Query("count") int count);
 }
