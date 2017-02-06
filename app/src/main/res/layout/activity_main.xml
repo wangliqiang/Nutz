@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.nuts.app.mvp.ui.MainActivity">
+    tools:context="com.app.nuts.app.mvp.ui.MainActivity"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,6 +17,7 @@
             android:id="@+id/movie_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="豆瓣电影" />
+            android:text="豆瓣电影"
+            android:layout_margin="30dp"/>
     </LinearLayout>
 </RelativeLayout>

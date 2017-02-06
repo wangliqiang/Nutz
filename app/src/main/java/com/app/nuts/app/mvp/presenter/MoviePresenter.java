@@ -54,7 +54,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                     @Override
                     public void onNext(String movieInfosStr) {
                         movieInfo = JSON.parseObject(movieInfosStr, MovieInfo.class);
-                        mView.showMovieInfo(movieInfo);
+                        mView.showMovieInfo(movieInfosStr);
                     }
                 });
     }

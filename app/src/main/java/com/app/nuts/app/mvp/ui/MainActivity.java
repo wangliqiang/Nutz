@@ -2,7 +2,7 @@ package com.app.nuts.app.mvp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 
 import com.app.nuts.R;
@@ -17,12 +17,16 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.movie_btn)
     Button movieBtn;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        toolbar.setTitle("Nuts");
+        setSupportActionBar(toolbar);
     }
 
 
@@ -33,6 +37,6 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.movie_btn)
     public void onClick() {
-        startActivity(new Intent(this,MovieActivity.class));
+        startActivity(new Intent(this, MovieActivity.class));
     }
 }
