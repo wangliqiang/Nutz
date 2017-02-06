@@ -14,10 +14,6 @@ import com.app.nuts.base.rxerrorhandler.handler.listener.ResponseErroListener;
 import com.app.nuts.http.GlobeHttpHandler;
 import com.app.nuts.utils.UiUtils;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -86,7 +82,6 @@ public class App extends BaseApplication {
                         //重新请求token,并重新执行请求
                         try {
                             if (!TextUtils.isEmpty(httpResult)) {
-                                Log.e("httpResult",httpResult);
                                 Timber.tag(TAG).w("result ------>" + httpResult);
                             }
                         } catch (Exception e) {
@@ -103,14 +98,9 @@ public class App extends BaseApplication {
                         return request;
                     }
                 })
-                .responseErroListener(new ResponseErroListener() {
-                    //     用来提供处理所有错误的监听
-                    //     rxjava必要要使用ErrorHandleSubscriber(默认实现Subscriber的onError方法),此监听才生效
-                    @Override
-                    public void handleResponseError(Context context, Exception e) {
-                        Timber.tag(TAG).w("------------>" + e.getMessage());
-                        UiUtils.SnackbarText("net error");
-                    }
+                .responseErroListener((context, e) -> {
+                    Timber.tag(TAG).w("------------>" + e.getMessage());
+                    UiUtils.SnackbarText("net error");
                 }).build();
     }
 
