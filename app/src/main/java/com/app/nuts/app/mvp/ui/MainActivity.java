@@ -3,8 +3,12 @@ package com.app.nuts.app.mvp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 import android.widget.Button;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.app.nuts.R;
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.common.BaseActivity;
