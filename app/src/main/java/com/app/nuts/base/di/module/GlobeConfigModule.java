@@ -33,8 +33,6 @@ public class GlobeConfigModule {
     private File mCacheFile;
 
     /**
-     * @author: jess
-     * @date 8/5/16 11:03 AM
      * @description: 设置baseurl
      */
     private GlobeConfigModule(Buidler buidler) {

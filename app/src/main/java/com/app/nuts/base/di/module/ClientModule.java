@@ -44,8 +44,6 @@ public class ClientModule {
      * @param client
      * @param httpUrl
      * @return
-     * @author: jess
-     * @date 8/30/16 1:15 PM
      * @description:提供retrofit
      */
     @Singleton
