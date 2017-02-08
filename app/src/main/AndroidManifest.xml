@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- glide配置 -->
+    <meta-data
+        android:name="com.app.nuts.widget.imageloader.glide.GlideConfiguration"
+        android:value="GlideModule" />
 
     <application
         android:name=".app.common.App"
@@ -25,9 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.mvp.ui.MovieActivity" />
+        <activity android:name=".app.mvp.ui.AppIntroActivity"></activity>
     </application>
-    <!-- glide配置 -->
-    <meta-data
-        android:name="com.app.nuts.widget.imageloader.glide.GlideConfiguration"
-        android:value="GlideModule" />
+
 </manifest>
