@@ -35,8 +35,6 @@ public class AppIntroActivity extends IntroActivity {
 
     private LockableViewPager viewPager;
     private LottieAnimationView animationView;
-    IntroButton introButton = new IntroButton(this);
-
 
     @Override
     protected Collection<? extends Fragment> generatePages(Bundle savedInstanceState) {
