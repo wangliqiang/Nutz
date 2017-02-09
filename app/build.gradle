@@ -64,4 +64,5 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.24'
     compile 'com.airbnb.android:lottie:1.0.1'
     compile 'com.matthew-tamlin:sliding-intro-screen:3.2.0'
+    compile 'com.github.markomilos:paginate:0.5.1'
 }

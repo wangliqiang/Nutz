@@ -25,6 +25,8 @@ import rx.functions.Func1;
 @ActivityScope
 public class MovieModel extends BaseModel<ServiceManager, CacheManager> implements MovieContract.Model {
 
+    int count = 10;
+
     @Inject
     public MovieModel(ServiceManager serviceManager, CacheManager cacheManager) {
         super(serviceManager, cacheManager);
@@ -32,13 +34,13 @@ public class MovieModel extends BaseModel<ServiceManager, CacheManager> implemen
 
 
     @Override
-    public Observable<String> getMovieInfo(int start, int count) {
+    public Observable<String> getMovieInfo(int start, boolean update) {
         Observable<String> movieInfo = mServiceManager.getCommonService()
-                .getMovieInfo(start, count);
+                .getMovieInfo(start, 10);
         return mCacheManager.getCommonCache()
-                .getMovieInfo(movieInfo,new DynamicKey(start),new EvictDynamicKey(false) )
+                .getMovieInfo(movieInfo, new DynamicKey(start), new EvictDynamicKey(update))
                 .flatMap((Func1<Reply<String>, Observable<String>>) stringReply -> {
-                return Observable.just(stringReply.getData());
-            });
+                    return Observable.just(stringReply.getData());
+                });
     }
 }
