@@ -32,12 +32,10 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         ButterKnife.bind(this);
-
         toolbar.setTitle("豆瓣电影top250");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
-
         mPresenter.getMovieInfo(1, 20);
     }
 
