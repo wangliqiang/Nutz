@@ -38,6 +38,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
     public void getMovieInfo(int start, int count) {
         mModel.getMovieInfo(start, count)
                 .subscribeOn(Schedulers.io())
+                .retryWhen(new RetryWithDelay(3, 2))
                 .doOnSubscribe(() -> {
 
                 })
@@ -46,7 +47,6 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                 .doAfterTerminate(() -> {
 
                 })
-                .retryWhen(new RetryWithDelay(3, 2))
                 .compose(RxUtils.bindToLifecycle(mView))
                 .subscribe(new ErrorHandleSubscriber<String>(mErrorHandler) {
                     @Override
