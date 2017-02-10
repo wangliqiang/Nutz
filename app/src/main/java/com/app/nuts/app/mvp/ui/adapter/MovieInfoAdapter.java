@@ -15,7 +15,6 @@ import com.app.nuts.app.common.App;
 import com.app.nuts.app.mvp.entity.MovieInfo;
 import com.app.nuts.widget.imageloader.ImageLoader;
 import com.app.nuts.widget.imageloader.glide.GlideImageConfig;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
