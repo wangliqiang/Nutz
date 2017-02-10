@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.app.nuts.R;
+import com.app.nuts.app.common.App;
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.common.BaseActivity;
 import com.app.nuts.app.di.component.DaggerMovieComponent;

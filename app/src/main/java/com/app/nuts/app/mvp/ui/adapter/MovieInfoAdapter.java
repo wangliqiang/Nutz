@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.nuts.R;
+import com.app.nuts.app.common.App;
 import com.app.nuts.app.mvp.entity.MovieInfo;
 import com.app.nuts.widget.imageloader.ImageLoader;
+import com.app.nuts.widget.imageloader.glide.GlideImageConfig;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -27,10 +29,14 @@ import butterknife.ButterKnife;
 public class MovieInfoAdapter extends Adapter<ViewHolder> {
     private Context ctx;
     private List<MovieInfo.SubjectsBean> list;
+    private ImageLoader imageLoader;
+    private App app;
 
     public MovieInfoAdapter(Context ctx, List<MovieInfo.SubjectsBean> list) {
         this.ctx = ctx;
         this.list = list;
+        this.app = (App) ctx.getApplicationContext();
+        this.imageLoader = app.getAppComponent().imageLoader();
     }
 
     public interface OnItemClickListener {
@@ -52,7 +58,12 @@ public class MovieInfoAdapter extends Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         if (holder instanceof itemViewHolder) {
-            Glide.with(ctx).load(list.get(position).getImages().getMedium()).into(((itemViewHolder) holder).movieImage);
+
+            imageLoader.loadImage(app, GlideImageConfig
+                    .builder()
+                    .url(list.get(position).getImages().getMedium())
+                    .imagerView(((itemViewHolder) holder).movieImage)
+                    .build());
             ((itemViewHolder) holder).movieName.setText(position + 1 + ". " + list.get(position).getTitle());
             String cast = "";
             for (int i = 0; i < list.get(position).getCasts().size(); i++) {
