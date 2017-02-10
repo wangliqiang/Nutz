@@ -36,7 +36,7 @@ public class MovieModel extends BaseModel<ServiceManager, CacheManager> implemen
     @Override
     public Observable<String> getMovieInfo(int start, boolean update) {
         Observable<String> movieInfo = mServiceManager.getCommonService()
-                .getMovieInfo(start, 10);
+                .getMovieInfo(start, count);
         return mCacheManager.getCommonCache()
                 .getMovieInfo(movieInfo, new DynamicKey(start), new EvictDynamicKey(update))
                 .flatMap(stringReply -> Observable.just(stringReply.getData()));
