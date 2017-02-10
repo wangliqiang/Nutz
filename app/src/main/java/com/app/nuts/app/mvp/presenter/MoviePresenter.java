@@ -50,7 +50,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
 
         mModel.getMovieInfo(start, isEvictCache)
                 .subscribeOn(Schedulers.io())
-                .retryWhen(new RetryWithDelay(3, 2))
+//                .retryWhen(new RetryWithDelay(3, 2))
                 .doOnSubscribe(() -> {
                     if (pullToRefresh)
                         mView.showLoading();//显示上拉刷新的进度条
@@ -71,9 +71,6 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                     public void onNext(String movieInfosStr) {
                         start = start + 10;
                         movieInfo = JSON.parseObject(movieInfosStr, MovieInfo.class);
-                        for (MovieInfo.SubjectsBean mi : movieInfo.getSubjects()){
-                            movieInfo.getSubjects().add(mi);
-                        }
                         mView.showMovieInfo(movieInfo);
                     }
                 });

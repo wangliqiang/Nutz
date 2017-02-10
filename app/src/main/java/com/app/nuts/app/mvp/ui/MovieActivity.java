@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,7 +48,7 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
     MovieInfoAdapter adapter;
     private Paginate mPaginate;
     private boolean isLoadingMore;
-    private MovieInfo mi;
+    private List<MovieInfo.SubjectsBean> ms = new ArrayList<MovieInfo.SubjectsBean>();
     int start = 0;
     int count = 10;
 
@@ -60,8 +61,9 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        initRecycleView();
+        adapter = new MovieInfoAdapter(this, ms);
+        recyclerView.setAdapter(adapter);
         //初始化数据
         mPresenter.getMovieInfo(true);
     }
@@ -78,9 +80,8 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
 
     @Override
     public void showMovieInfo(MovieInfo movieInfos) {
-        adapter = new MovieInfoAdapter(this, mi.getSubjects());
-        recyclerView.setAdapter(adapter);
-        initRecycleView();
+        ms.addAll(movieInfos.getSubjects());
+        adapter.notifyDataSetChanged();
         initPaginate();
     }
 
@@ -152,7 +153,6 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
                 @Override
                 public void onLoadMore() {
                     mPresenter.getMovieInfo(false);
-                    adapter.notifyDataSetChanged();
                 }
 
                 @Override
