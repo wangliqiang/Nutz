@@ -27,3 +27,5 @@
 # Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
 -dontwarn okhttp3.**
+-dontwarn io.rx_cache.internal.**
+-keepclassmembers enum io.rx_cache.Source { *; }
