@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.app.nuts.BuildConfig;
+import com.app.nuts.app.di.module.CacheModule;
 import com.app.nuts.app.di.module.ServiceModule;
 import com.app.nuts.app.mvp.model.api.Api;
 import com.app.nuts.base.BaseApplication;
@@ -33,7 +34,7 @@ public class App extends BaseApplication {
                 .imageModule(getImageModule())//baseApplication提供
                 .globeConfigModule(getGlobeConfigModule())//全局配置
                 .serviceModule(new ServiceModule())//api
-//                .cacheModule(new CacheModule())//缓存
+                .cacheModule(new CacheModule())//缓存
                 .build();
 
         if (BuildConfig.DEBUG) {//Timber日志打印
