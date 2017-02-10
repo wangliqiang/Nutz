@@ -39,8 +39,6 @@ public class MovieModel extends BaseModel<ServiceManager, CacheManager> implemen
                 .getMovieInfo(start, 10);
         return mCacheManager.getCommonCache()
                 .getMovieInfo(movieInfo, new DynamicKey(start), new EvictDynamicKey(update))
-                .flatMap((Func1<Reply<String>, Observable<String>>) stringReply -> {
-                    return Observable.just(stringReply.getData());
-                });
+                .flatMap(stringReply -> Observable.just(stringReply.getData()));
     }
 }
