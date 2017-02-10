@@ -49,9 +49,7 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
     MovieInfoAdapter adapter;
     private Paginate mPaginate;
     private boolean isLoadingMore;
-    private List<MovieInfo.SubjectsBean> ms = new ArrayList<MovieInfo.SubjectsBean>();
-    int start = 0;
-    int count = 10;
+    private List<MovieInfo.SubjectsBean> ms = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
