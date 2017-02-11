@@ -97,7 +97,7 @@ public class App extends BaseApplication {
                 })
                 .responseErroListener((context, e) -> {
                     Timber.tag(TAG).w("------------>" + e.getMessage());
-                    UiUtils.SnackbarText("net error");
+                    UiUtils.SnackbarText("网络连接异常");
                 }).build();
     }
 
