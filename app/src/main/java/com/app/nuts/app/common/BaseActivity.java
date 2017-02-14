@@ -7,7 +7,7 @@ import com.app.nuts.base.mvp.AppPresenter;
  * Created by 王立强 on 2017/2/4.
  */
 
-public abstract class BaseActivity<P extends AppPresenter> extends BaseAppActivity<P>{
+public abstract class BaseActivity<P extends AppPresenter> extends BaseAppActivity<P> {
     protected App mApp;
 
     @Override

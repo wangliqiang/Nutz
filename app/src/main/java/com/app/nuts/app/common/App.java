@@ -1,5 +1,6 @@
 package com.app.nuts.app.common;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -11,6 +12,8 @@ import com.app.nuts.base.BaseApplication;
 import com.app.nuts.base.di.module.GlobeConfigModule;
 import com.app.nuts.http.GlobeHttpHandler;
 import com.app.nuts.utils.UiUtils;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -23,6 +26,7 @@ import timber.log.Timber;
 
 public class App extends BaseApplication {
     private AppComponent mAppComponent;
+    private RefWatcher mRefWatcher;
 
     @Override
     public void onCreate() {
@@ -40,6 +44,26 @@ public class App extends BaseApplication {
         if (BuildConfig.DEBUG) {//Timber日志打印
             Timber.plant(new Timber.DebugTree());
         }
+
+        installLeakCanary();
+    }
+
+    /**
+     * 安装leakCanary检测内存泄露
+     */
+    protected void installLeakCanary() {
+        this.mRefWatcher = BuildConfig.USE_CANARY ? LeakCanary.install(this) : RefWatcher.DISABLED;
+    }
+
+    /**
+     * 获得leakCanary观察器
+     *
+     * @param context
+     * @return
+     */
+    public static RefWatcher getRefWatcher(Context context) {
+        App application = (App) context.getApplicationContext();
+        return application.mRefWatcher;
     }
 
 
@@ -48,6 +72,8 @@ public class App extends BaseApplication {
         super.onTerminate();
         if (mAppComponent != null)
             this.mAppComponent = null;
+        if(mRefWatcher != null)
+            this.mRefWatcher = null;
     }
 
 
