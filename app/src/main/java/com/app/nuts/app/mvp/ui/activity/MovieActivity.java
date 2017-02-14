@@ -1,4 +1,4 @@
-package com.app.nuts.app.mvp.ui;
+package com.app.nuts.app.mvp.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;

@@ -1,4 +1,4 @@
-package com.app.nuts.app.mvp.ui;
+package com.app.nuts.app.mvp.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

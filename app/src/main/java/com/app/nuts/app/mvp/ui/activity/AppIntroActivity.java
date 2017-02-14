@@ -1,4 +1,4 @@
-package com.app.nuts.app.mvp.ui;
+package com.app.nuts.app.mvp.ui.activity;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

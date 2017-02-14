@@ -2,7 +2,7 @@ package com.app.nuts.app.di.component;
 
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.di.module.MovieModule;
-import com.app.nuts.app.mvp.ui.MovieActivity;
+import com.app.nuts.app.mvp.ui.activity.MovieActivity;
 import com.app.nuts.base.di.scope.ActivityScope;
 
 import dagger.Component;

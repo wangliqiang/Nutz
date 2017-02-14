@@ -21,15 +21,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.mvp.ui.MainActivity">
+        <activity android:name=".app.mvp.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.mvp.ui.MovieActivity" />
-        <activity android:name=".app.mvp.ui.AppIntroActivity"></activity>
+        <activity android:name=".app.mvp.ui.activity.MovieActivity" />
+        <activity android:name=".app.mvp.ui.activity.AppIntroActivity"></activity>
     </application>
 
 </manifest>
