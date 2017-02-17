@@ -7,12 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.nuts.base.mvp.AppPresenter;
-import com.trello.rxlifecycle.components.RxFragment;
+import com.trello.rxlifecycle.components.support.RxFragment;
 
 import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
-//import butterknife.Unbinder;
 
 /**
  * Created by 王立强 on 2017/2/4.

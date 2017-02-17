@@ -52,7 +52,7 @@ public class App extends BaseApplication {
      * 安装leakCanary检测内存泄露
      */
     protected void installLeakCanary() {
-        this.mRefWatcher = BuildConfig.USE_CANARY ? LeakCanary.install(this) : RefWatcher.DISABLED;
+        this.mRefWatcher = true ? LeakCanary.install(this) : RefWatcher.DISABLED;
     }
 
     /**

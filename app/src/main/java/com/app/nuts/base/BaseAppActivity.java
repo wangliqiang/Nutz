@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.app.nuts.base.mvp.AppPresenter;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import org.simple.eventbus.EventBus;
-
 import javax.inject.Inject;
 
 /**
@@ -101,11 +99,5 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
      */
     protected boolean useEventBus() {
         return true;
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 }

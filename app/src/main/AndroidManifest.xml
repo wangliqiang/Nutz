@@ -29,7 +29,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.mvp.ui.activity.MovieActivity" />
-        <activity android:name=".app.mvp.ui.activity.AppIntroActivity"></activity>
     </application>
 
 </manifest>

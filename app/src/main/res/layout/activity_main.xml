@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,39 +9,19 @@
 
     <include layout="@layout/toolbar" />
 
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="32dp"
-        android:gravity="center"
-        android:background="#00d1c1">
+        android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animation_view"
-            android:layout_width="wrap_content"
+        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="LogoSmall.json"
-            app:lottie_loop="true" />
-    </LinearLayout>
+            android:layout_gravity="bottom" />
+    </android.support.design.widget.CoordinatorLayout>
 
-    <Button
-        android:id="@+id/movie_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="豆瓣电影" />
-
-    <Button
-        android:id="@+id/intro_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="引导页" />
 </LinearLayout>
