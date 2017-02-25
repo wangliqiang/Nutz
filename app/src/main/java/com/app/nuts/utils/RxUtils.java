@@ -16,18 +16,10 @@ import rx.schedulers.Schedulers;
 
 public class RxUtils {
     public static <T> Observable.Transformer<T, T> applySchedulers(final BaseView view) {
-        return observable -> observable.subscribeOn(Schedulers.io())
-                .doOnSubscribe(() -> {//显示进度条
-//                    view.showLoading();
-                })
+        return observable -> observable
+                .subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate(new Action0() {
-                    @Override
-                    public void call() {
-//                        view.hideLoading();//隐藏进度条
-                    }
-                }).compose(RxUtils.<T>bindToLifecycle(view));
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 

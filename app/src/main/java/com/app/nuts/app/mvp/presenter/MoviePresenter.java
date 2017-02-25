@@ -3,7 +3,6 @@ package com.app.nuts.app.mvp.presenter;
 import android.app.Application;
 
 import com.alibaba.fastjson.JSON;
-import com.app.nuts.app.common.CommonSchedulers;
 import com.app.nuts.app.mvp.contract.MovieContract;
 import com.app.nuts.app.mvp.entity.MovieInfo;
 import com.app.nuts.base.AppManager;
@@ -14,9 +13,6 @@ import com.app.nuts.base.rxerrorhandler.handler.RetryWithDelay;
 import com.app.nuts.utils.RxUtils;
 
 import javax.inject.Inject;
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by 王立强 on 2017/2/4.
@@ -50,8 +46,8 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
         }
 
         mModel.getMovieInfo(start, isEvictCache)
-                .compose(CommonSchedulers.io_main())
-//                .retryWhen(new RetryWithDelay(3, 2))
+                .compose(RxUtils.applySchedulers(mView))
+                .retryWhen(new RetryWithDelay(3, 2))
                 .doOnSubscribe(() -> {
                     if (pullToRefresh)
                         mView.showLoading();//显示上拉刷新的进度条
@@ -64,7 +60,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                     else
                         mView.endLoadMore();//隐藏下拉加载更多的进度条
                 })
-                .compose(RxUtils.bindToLifecycle(mView))
+//                .compose(RxUtils.bindToLifecycle(mView))
                 .subscribe(new ErrorHandleSubscriber<String>(mErrorHandler) {
                     @Override
                     public void onNext(String movieInfosStr) {
