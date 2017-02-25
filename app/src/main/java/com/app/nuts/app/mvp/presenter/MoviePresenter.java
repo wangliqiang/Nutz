@@ -3,6 +3,7 @@ package com.app.nuts.app.mvp.presenter;
 import android.app.Application;
 
 import com.alibaba.fastjson.JSON;
+import com.app.nuts.app.common.CommonSchedulers;
 import com.app.nuts.app.mvp.contract.MovieContract;
 import com.app.nuts.app.mvp.entity.MovieInfo;
 import com.app.nuts.base.AppManager;
@@ -49,7 +50,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
         }
 
         mModel.getMovieInfo(start, isEvictCache)
-                .subscribeOn(Schedulers.io())
+                .compose(CommonSchedulers.io_main())
 //                .retryWhen(new RetryWithDelay(3, 2))
                 .doOnSubscribe(() -> {
                     if (pullToRefresh)
@@ -57,8 +58,6 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                     else
                         mView.startLoadMore();//显示下拉加载更多的进度条
                 })
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
                 .doAfterTerminate(() -> {
                     if (pullToRefresh)
                         mView.hideLoading();//隐藏上拉刷新的进度条
