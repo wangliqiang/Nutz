@@ -18,7 +18,6 @@ public class RxUtils {
     public static <T> Observable.Transformer<T, T> applySchedulers(final BaseView view) {
         return observable -> observable
                 .subscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
