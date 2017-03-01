@@ -25,7 +25,7 @@ import rx.functions.Func1;
 @ActivityScope
 public class MovieModel extends BaseModel<ServiceManager, CacheManager> implements MovieContract.Model {
 
-    int count = 10;
+    int count = 20;
 
     @Inject
     public MovieModel(ServiceManager serviceManager, CacheManager cacheManager) {

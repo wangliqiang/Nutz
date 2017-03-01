@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.app.nuts.R;
@@ -37,7 +38,7 @@ import rx.functions.Action1;
 import timber.log.Timber;
 
 
-public class MovieActivity extends BaseActivity<MoviePresenter> implements MovieContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class MovieActivity extends BaseActivity<MoviePresenter> implements MovieContract.View, SwipeRefreshLayout.OnRefreshListener,Paginate.Callbacks {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -48,7 +49,8 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
 
     MovieInfoAdapter adapter;
     private Paginate mPaginate;
-    private boolean isLoadingMore;
+    private boolean isLoadingMore = false;
+    private boolean noDataMore = false;
     private List<MovieInfo.SubjectsBean> ms = new ArrayList<>();
 
     @Override
@@ -63,8 +65,9 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
         initRecycleView();
         adapter = new MovieInfoAdapter(this, ms);
         recyclerView.setAdapter(adapter);
-        //初始化数据
         mPresenter.getMovieInfo(true);
+        //初始化分页
+        initPaginate();
     }
 
     @Override
@@ -81,7 +84,6 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
     public void showMovieInfo(MovieInfo movieInfos) {
         ms.addAll(movieInfos.getSubjects());
         adapter.notifyDataSetChanged();
-        initPaginate();
     }
 
     /**
@@ -105,6 +107,11 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
     @Override
     public void endLoadMore() {
         isLoadingMore = false;
+    }
+
+    @Override
+    public void noData() {
+        noDataMore = true;
     }
 
     @Override
@@ -148,24 +155,7 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
      */
     private void initPaginate() {
         if (mPaginate == null) {
-            Paginate.Callbacks callbacks = new Paginate.Callbacks() {
-                @Override
-                public void onLoadMore() {
-                    mPresenter.getMovieInfo(false);
-                }
-
-                @Override
-                public boolean isLoading() {
-                    return isLoadingMore;
-                }
-
-                @Override
-                public boolean hasLoadedAllItems() {
-                    return false;
-                }
-            };
-
-            mPaginate = Paginate.with(recyclerView, callbacks)
+            mPaginate = Paginate.with(recyclerView, this)
                     .setLoadingTriggerThreshold(0)
                     .build();
             mPaginate.setHasMoreDataToLoad(false);
@@ -176,5 +166,20 @@ public class MovieActivity extends BaseActivity<MoviePresenter> implements Movie
     protected void onDestroy() {
         super.onDestroy();
         this.mPaginate = null;
+    }
+
+    @Override
+    public void onLoadMore() {
+        mPresenter.getMovieInfo(false);
+    }
+
+    @Override
+    public boolean isLoading() {
+        return isLoadingMore;
+    }
+
+    @Override
+    public boolean hasLoadedAllItems() {
+        return noDataMore;
     }
 }

@@ -38,6 +38,11 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
 
         if (pullToRefresh) start = 0;
 
+        if (start > 300 ) {
+            mView.noData();
+            return;
+        }
+
         boolean isEvictCache = pullToRefresh;//是否驱逐缓存,为ture即不使用缓存,每次上拉刷新即需要最新数据,则不使用缓存
 
         if (pullToRefresh && isFirst) {//默认在第一次上拉刷新时使用缓存
@@ -60,13 +65,18 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
                     else
                         mView.endLoadMore();//隐藏下拉加载更多的进度条
                 })
-//                .compose(RxUtils.bindToLifecycle(mView))
+                .compose(RxUtils.bindToLifecycle(mView))
                 .subscribe(new ErrorHandleSubscriber<String>(mErrorHandler) {
                     @Override
                     public void onNext(String movieInfosStr) {
-                        start = start + 10;
+                        start = start + 20;
+                        if (pullToRefresh) movieInfo = null;//如果是上拉刷新则清空列表
                         movieInfo = JSON.parseObject(movieInfosStr, MovieInfo.class);
-                        mView.showMovieInfo(movieInfo);
+                        if (movieInfo.getSubjects().toString() != "[]") {
+                            mView.showMovieInfo(movieInfo);
+                        } else {
+                            mView.noData();
+                        }
                     }
                 });
     }
