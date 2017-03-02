@@ -51,7 +51,7 @@ public class MoviePresenter extends BasePresenter<MovieContract.Model, MovieCont
         }
 
         mModel.getMovieInfo(start, isEvictCache)
-                .compose(RxUtils.applySchedulers(mView))
+                .compose(RxUtils.applySchedulers())
                 .retryWhen(new RetryWithDelay(3, 2))
                 .doOnSubscribe(() -> {
                     if (pullToRefresh)
