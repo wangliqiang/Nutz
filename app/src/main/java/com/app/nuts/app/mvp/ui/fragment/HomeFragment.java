@@ -81,6 +81,12 @@ public class HomeFragment extends BaseFragment {
                                 .build()));
         recyclerViewBanner.setOnRvBannerClickListener(position -> {
             //banner点击事件
+            switch (position){
+                case 1:
+                    break;
+                default:
+                    break;
+            }
         });
     }
 
