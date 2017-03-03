@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
+
 import com.app.nuts.base.mvp.AppPresenter;
+import com.app.nuts.utils.NetUtil;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import org.simple.eventbus.EventBus;
 import javax.inject.Inject;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * Created by 王立强 on 2017/2/4.
@@ -48,6 +53,11 @@ public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApplication = (BaseApplication) getApplication();
+
+        if(!NetUtil.isNetworkAvailable()){
+            Toasty.error(getApplicationContext(), "网络连接异常，请检查！", Toast.LENGTH_SHORT, true).show();
+        }
+
         //如果intent包含了此字段,并且为true说明不加入到list
         // 默认为false,如果不需要管理(比如不需要在退出所有activity(killAll)时，退出此activity就在intent加此字段为true)
         boolean isNotAdd = false;

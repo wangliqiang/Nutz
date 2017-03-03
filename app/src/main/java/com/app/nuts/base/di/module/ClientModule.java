@@ -96,8 +96,6 @@ public class ClientModule {
     }
 
 
-
-
     @Singleton
     @Provides
     Interceptor provideIntercept(RequestIntercept intercept) {

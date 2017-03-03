@@ -3,6 +3,7 @@ package com.app.nuts.app.common;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.app.nuts.BuildConfig;
 import com.app.nuts.app.di.module.CacheModule;
@@ -15,6 +16,7 @@ import com.app.nuts.utils.UiUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -123,7 +125,7 @@ public class App extends BaseApplication {
                 })
                 .responseErroListener((context, e) -> {
                     Timber.tag(TAG).w("------------>" + e.getMessage());
-                    UiUtils.SnackbarText("网络连接异常");
+                    Toasty.error(getApplicationContext(), "网络连接异常，请检查！", Toast.LENGTH_SHORT, true).show();
                 }).build();
     }
 
