@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.app.nuts.app.mvp.ui.fragment.HomeFragment">
@@ -8,6 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <com.app.nuts.widget.banner.RecyclerViewBanner
+            android:id="@+id/recyclerViewBanner"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:interval="3000"
+            app:isShowPoint="true" >
+
+        </com.app.nuts.widget.banner.RecyclerViewBanner>
 
         <Button
             android:id="@+id/movie_btn"
@@ -18,6 +28,5 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="豆瓣电影" />
-
     </LinearLayout>
 </FrameLayout>
