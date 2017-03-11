@@ -13,6 +13,7 @@ import com.app.nuts.base.BaseApplication;
 import com.app.nuts.base.di.module.GlobeConfigModule;
 import com.app.nuts.http.GlobeHttpHandler;
 import com.app.nuts.utils.UiUtils;
+import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -48,6 +49,8 @@ public class App extends BaseApplication {
         }
 
         installLeakCanary();
+
+        Stetho.initializeWithDefaults(this);
     }
 
     /**

@@ -7,6 +7,7 @@ import com.app.nuts.base.rxerrorhandler.core.RxErrorHandler;
 import com.app.nuts.base.rxerrorhandler.handler.listener.ResponseErroListener;
 import com.app.nuts.http.RequestIntercept;
 import com.app.nuts.utils.DataHelper;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.File;
 import java.util.List;
@@ -71,7 +72,8 @@ public class ClientModule {
         OkHttpClient.Builder builder = okHttpClient
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
-                .addNetworkInterceptor(intercept);
+                .addNetworkInterceptor(intercept)
+                .addNetworkInterceptor(new StethoInterceptor());
         if (interceptors != null && interceptors.size() > 0) {//如果外部提供了interceptor的数组则遍历添加
             for (Interceptor interceptor : interceptors) {
                 builder.addInterceptor(interceptor);
