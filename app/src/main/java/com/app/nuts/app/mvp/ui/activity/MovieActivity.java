@@ -3,15 +3,11 @@ package com.app.nuts.app.mvp.ui.activity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.widget.TextView;
 
 import com.app.nuts.R;
-import com.app.nuts.app.common.App;
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.common.BaseActivity;
 import com.app.nuts.app.di.component.DaggerMovieComponent;
@@ -23,10 +19,6 @@ import com.app.nuts.app.mvp.ui.adapter.MovieInfoAdapter;
 import com.app.nuts.utils.UiUtils;
 import com.paginate.Paginate;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import timber.log.Timber;
 
 

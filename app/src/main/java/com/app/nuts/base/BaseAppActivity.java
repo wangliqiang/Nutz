@@ -8,15 +8,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
+import com.app.fragmentation.SupportActivity;
 import com.app.nuts.base.mvp.AppPresenter;
 import com.app.nuts.utils.NetUtil;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import org.simple.eventbus.EventBus;
 import javax.inject.Inject;
 
 import es.dmoral.toasty.Toasty;
-import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by 王立强 on 2017/2/4.

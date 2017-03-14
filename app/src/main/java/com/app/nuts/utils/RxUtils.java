@@ -7,7 +7,6 @@ import com.trello.rxlifecycle.LifecycleTransformer;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
 /**

@@ -22,8 +22,6 @@ import okio.Buffer;
 import okio.BufferedSource;
 import timber.log.Timber;
 
-import static com.app.nuts.utils.CharactorHandler.jsonFormat;
-
 /**
  * Created by 王立强 on 2017/2/4.
  */

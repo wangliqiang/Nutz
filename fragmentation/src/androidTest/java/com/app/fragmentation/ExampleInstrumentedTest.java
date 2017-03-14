@@ -1,4 +1,4 @@
-package com.app.nuts;
+package com.app.fragmentation;
 
 import android.content.Context;
 
@@ -19,6 +19,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.app.simplemvp", appContext.getPackageName());
+        assertEquals("com.app.fragmentation.test", appContext.getPackageName());
     }
 }

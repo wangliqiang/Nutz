@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.app.fragmentation.SupportFragment;
 import com.app.nuts.base.mvp.AppPresenter;
 
 import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
-
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by 王立强 on 2017/2/4.

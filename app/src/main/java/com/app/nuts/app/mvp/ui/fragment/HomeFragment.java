@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.app.nuts.R;
 import com.app.nuts.app.common.App;
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.common.BaseFragment;
 import com.app.nuts.app.mvp.ui.activity.MovieActivity;
-import com.app.nuts.app.mvp.ui.adapter.MovieInfoAdapter;
 import com.app.nuts.widget.banner.RecyclerViewBanner;
 import com.app.nuts.widget.imageloader.ImageLoader;
 import com.app.nuts.widget.imageloader.glide.GlideImageConfig;
@@ -26,8 +24,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.R.id.list;
 
 /**
  * A simple {@link Fragment} subclass.

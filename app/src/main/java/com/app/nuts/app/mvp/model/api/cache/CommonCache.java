@@ -1,8 +1,5 @@
 package com.app.nuts.app.mvp.model.api.cache;
 
-import com.app.nuts.app.mvp.entity.MovieInfo;
-
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.rx_cache.DynamicKey;

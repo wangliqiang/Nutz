@@ -1,13 +1,12 @@
 package com.app.nuts.app.mvp.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
+import com.app.fragmentation.SupportFragment;
+import com.app.fragmentation.anim.FragmentAnimator;
 import com.app.nuts.R;
 import com.app.nuts.app.common.AppComponent;
 import com.app.nuts.app.common.BaseActivity;
@@ -17,8 +16,6 @@ import com.app.nuts.app.mvp.ui.fragment.MeFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.yokeyword.fragmentation.SupportFragment;
-import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 public class MainActivity extends BaseActivity {
 
