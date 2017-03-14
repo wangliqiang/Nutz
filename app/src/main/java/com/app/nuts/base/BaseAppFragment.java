@@ -7,17 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.nuts.base.mvp.AppPresenter;
-import com.trello.rxlifecycle.components.support.RxFragment;
 
 import org.simple.eventbus.EventBus;
 
 import javax.inject.Inject;
 
+import me.yokeyword.fragmentation.SupportFragment;
+
 /**
  * Created by 王立强 on 2017/2/4.
  */
 
-public abstract class BaseAppFragment<P extends AppPresenter> extends RxFragment {
+public abstract class BaseAppFragment<P extends AppPresenter> extends SupportFragment {
     protected BaseAppActivity mActivity;
     protected View mRootView;
     protected final String TAG = this.getClass().getSimpleName();

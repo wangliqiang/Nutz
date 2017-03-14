@@ -16,12 +16,13 @@ import org.simple.eventbus.EventBus;
 import javax.inject.Inject;
 
 import es.dmoral.toasty.Toasty;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by 王立强 on 2017/2/4.
  */
 
-public abstract class BaseAppActivity<P extends AppPresenter> extends RxAppCompatActivity {
+public abstract class BaseAppActivity<P extends AppPresenter> extends SupportActivity {
     protected final String TAG = this.getClass().getSimpleName();
     protected BaseApplication mApplication;
     @Inject
