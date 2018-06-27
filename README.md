@@ -1,3 +1,3 @@
-# Nuts
+# Nutz
 
-> Nuts is Love
+> Nutz is Love
